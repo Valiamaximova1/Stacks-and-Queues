@@ -1,0 +1,28 @@
+import java.util.ArrayDeque;
+import java.util.Scanner;
+
+import static java.lang.System.in;
+
+public class HotPotato {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(in);
+
+        String[] tokens = scan.nextLine().split("\\s+");
+        int n = Integer.parseInt(scan.nextLine());
+        ArrayDeque<String> queue = new ArrayDeque<>();
+        int cyrcle = 0;
+
+        for (String s : tokens) {
+            queue.offer(s);
+        }
+
+        while (queue.size() > 1){
+
+            for (int i = 1; i < n; i++) {
+                queue.offer(queue.poll());
+            }
+            System.out.println("Removed " + queue.poll()) ;
+        }
+        System.out.println("Last is " + queue.poll());
+    }
+}
